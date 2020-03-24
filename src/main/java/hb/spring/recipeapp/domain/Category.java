@@ -5,12 +5,10 @@ import lombok.*;
 import javax.persistence.*;
 import java.util.Set;
 
+
+@Data
+@EqualsAndHashCode(exclude = {"recipes"})
 @Entity
-@Getter
-@Setter
-@NoArgsConstructor
-@AllArgsConstructor
-@Builder
 public class Category {
 
     @Id

@@ -5,21 +5,19 @@ import lombok.*;
 import javax.persistence.*;
 import java.math.BigDecimal;
 
-@Entity
-@Getter
-@Setter
-@NoArgsConstructor
-@AllArgsConstructor
 
+@Data
+@EqualsAndHashCode(exclude = {"recipe"})
+@Entity
 public class Ingredient {
     @Builder
-    public Ingredient(String description, BigDecimal amount, UnitOfMeasure uom, Recipe recipe) {
+    public Ingredient(String description, BigDecimal amount, UnitOfMeasure uom) {
         this.description = description;
         this.amount = amount;
         this.uom = uom;
-        this.recipe = recipe;
     }
 
+    public Ingredient(){}
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -32,4 +30,6 @@ public class Ingredient {
 
     @OneToOne(fetch = FetchType.EAGER)
     private UnitOfMeasure uom;
+
+
 }
