@@ -17,7 +17,7 @@ entity Recipe {
     servings Integer,
     source String,
     url String,
-    image Byte,
+    image Byte[],
     difficulty Difficulty
 }
 
