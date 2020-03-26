@@ -9,8 +9,10 @@
 
     <div class="container">
         <div class="row">
-            <div class="col-md-6 col-md-offset-3">
-
+            <button class="btn btn-outline-primary" onclick="location.href='/'">Go to list</button>
+        </div>
+        <div class="row">
+            <div class="col-8">
                 <div class="card">
                     <div class="card-header" th:text="${recipe.description}">Recipe Description Here..</div>
                     <div class="card-body">
@@ -37,15 +39,15 @@
                             <p class="col-md-3">Source :</p>
                             <p class="col-md-3" th:text="${recipe.source}">30 min</p>
                             <p class="col-md-3">URL :</p>
-                            <p class="col-md-3" th:text="${recipe.url}">www.example.com</p>
+                            <p class="col-md-3"><a th:href="${recipe.url}">View Original</a></p>
                         </div>
                     </div>
                 </div>
                 <div class="card">
                     <div class="card-header">Ingredients</div>
                     <div class="card-body">
-                        <ul th:each="re:${recipe.ingredients}">
-                            <li th:text="${re.description}">1 cup of milk</li>
+                        <ul th:each="ingredient:${recipe.ingredients}">
+                            <li th:text="${ingredient.description}">1 cup of milk</li>
                         </ul>
                     </div>
                 </div>
