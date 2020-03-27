@@ -45,7 +45,7 @@
                 </div>
                 <div class="card">
                     <div class="card-header">Ingredients
-                        <a class="float-right" href="#" th:href="'/recipe/' + ${recipe.id} + '/ingredients'"><button class="btn btn-sm btn-outline-primary">Edit</button></a>
+                        <a class="float-right" href="#" th:href="'/recipe/' + ${recipe.id} + '/ingredients'"><button class="btn btn-sm btn-outline-primary">View</button></a>
                     </div>
                     <div class="card-body">
                         <ul th:each="ingredient:${recipe.ingredients}">
