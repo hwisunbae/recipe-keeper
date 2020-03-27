@@ -44,7 +44,9 @@
                     </div>
                 </div>
                 <div class="card">
-                    <div class="card-header">Ingredients</div>
+                    <div class="card-header">Ingredients
+                        <a class="float-right" href="#" th:href="'/recipe/' + ${recipe.id} + '/ingredients'"><button class="btn btn-sm btn-outline-primary">Edit</button></a>
+                    </div>
                     <div class="card-body">
                         <ul th:each="ingredient:${recipe.ingredients}">
                             <li th:text="${ingredient.description}">1 cup of milk</li>
