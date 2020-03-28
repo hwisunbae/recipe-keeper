@@ -6,6 +6,7 @@ import com.fasterxml.jackson.databind.util.Converter;
 import com.sun.istack.Nullable;
 import hb.spring.recipeapp.commands.IngredientCommand;
 import hb.spring.recipeapp.domain.Ingredient;
+import hb.spring.recipeapp.domain.Recipe;
 import lombok.Synchronized;
 import org.springframework.stereotype.Component;
 
@@ -24,8 +25,17 @@ public class CommandToIngredient implements Converter<IngredientCommand, Ingredi
     public Ingredient convert(IngredientCommand ingredientCommand) {
         if (ingredientCommand == null)
             return null;
+
         final Ingredient ingredient = new Ingredient();
         ingredient.setId(ingredientCommand.getId());
+
+        if (ingredientCommand.getRecipeId() != null) {
+            Recipe recipe = new Recipe();
+            recipe.setId(ingredientCommand.getRecipeId());
+            ingredient.setRecipe(recipe);
+            recipe.addIngredient(ingredient);
+        } // test NullPointerException
+
         ingredient.setAmount(ingredientCommand.getAmount());
         ingredient.setDescription(ingredientCommand.getDescription());
         ingredient.setUom(converter.convert(ingredientCommand.getUnitOfMeasureCommand()));

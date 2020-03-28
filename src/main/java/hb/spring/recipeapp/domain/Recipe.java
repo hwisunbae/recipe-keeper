@@ -12,6 +12,7 @@ import java.util.Set;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
+@EqualsAndHashCode(exclude="categories")
 public class Recipe {
 
     @Id
@@ -48,8 +49,10 @@ public class Recipe {
 
 
     public void setNotes(Notes notes) {
-        this.notes = notes;
-        notes.setRecipe(this);
+        if (notes != null) {
+            this.notes = notes;
+            notes.setRecipe(this);
+        }
     }
 
     public Recipe addIngredient(Ingredient ingredient){
@@ -58,4 +61,8 @@ public class Recipe {
         return this;
     }
 
+    @Override
+    public String toString() {
+        return "";
+    }
 }
