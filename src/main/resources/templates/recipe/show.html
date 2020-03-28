@@ -22,7 +22,7 @@
                         <div class="row">
                             <p class="col-md-3">Categories :</p>
                             <ul class="col-md-9">
-                                <li th:each="re: ${recipe.categories}" th:text="${re.description}">one</li>
+                                <li th:each="category: ${recipe.categories}" th:text="${category.getDescription()}">one</li>
                             </ul>
                         </div>
                         <div class="row">
