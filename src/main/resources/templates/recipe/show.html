@@ -8,11 +8,13 @@
 <body>
 
     <div class="container">
+        <br>
+        <h1 class="text-center">Recipe View Page</h1>
         <div class="row">
-            <button class="btn btn-outline-primary" onclick="location.href='/'">Go to list</button>
+            <button class="btn btn-outline-primary mt-2 mb-3" onclick="location.href='/'">Go to list</button>
         </div>
         <div class="row">
-            <div class="col-8">
+            <div class="col">
                 <div class="card">
                     <div class="card-header" th:text="${recipe.description}">Recipe Description Here..</div>
                     <div class="card-body">
@@ -43,6 +45,7 @@
                         </div>
                     </div>
                 </div>
+                <br>
                 <div class="card">
                     <div class="card-header">Ingredients
                         <a class="float-right" href="#" th:href="'/recipe/' + ${recipe.id} + '/ingredients'"><button class="btn btn-sm btn-outline-primary">View</button></a>
@@ -53,19 +56,21 @@
                         </ul>
                     </div>
                 </div>
+                <br>
                 <div class="card">
                     <div class="card-header">Directions</div>
                     <div class="card-body">
                         <p th:text="${recipe.directions}">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ex, qui.</p>
                     </div>
                 </div>
+                <br>
                 <div class="card">
                     <div class="card-header">Notes</div>
                     <div class="card-body">
                         <p th:text="${recipe.notes.getRecipeNotes()}">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci aliquam consectetur delectus dolor ipsa maxime, necessitatibus nulla quaerat ratione unde!</p>
                     </div>
                 </div>
-
+                <br>
         </div>
     </div>
 
