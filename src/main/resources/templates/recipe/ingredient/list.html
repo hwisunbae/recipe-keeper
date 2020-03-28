@@ -13,8 +13,9 @@
                 <br>
                 <h1 class="text-center">Ingredients</h1>
 
-                <div class="row float-right">
-                    <button class="btn btn-outline-primary mb-3" onclick="location.href='/recipe/add'">Create</button>
+                <div class="row float-right mb-3">
+                    <button class="btn btn-outline-primary mr-2" onclick="location.href='/'">Main</button>
+                    <a href="#" th:href="@{'/recipe/'+${recipe.getId()} +'/ingredient/add'}"><button class="btn btn-outline-primary">Create Ingredient</button></a>
                 </div>
                 <table class="table-responsive" th:if="${not #lists.isEmpty(recipe.ingredientCommands)}">
                     <table class="table table-hover">

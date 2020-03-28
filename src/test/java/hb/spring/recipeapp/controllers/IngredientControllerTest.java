@@ -3,6 +3,7 @@ package hb.spring.recipeapp.controllers;
 import hb.spring.recipeapp.commands.IngredientCommand;
 import hb.spring.recipeapp.commands.RecipeCommand;
 import hb.spring.recipeapp.domain.Ingredient;
+import hb.spring.recipeapp.domain.Recipe;
 import hb.spring.recipeapp.service.IngredientService;
 import hb.spring.recipeapp.service.RecipeService;
 import hb.spring.recipeapp.service.UnitOfMeasureService;
@@ -66,6 +67,25 @@ class IngredientControllerTest {
                 .andExpect(view().name("recipe/ingredient/show"))
                 .andExpect(model().attributeExists("ingredient"));
     }
+
+    @Test
+    public void testNewIngredient() throws Exception {
+        RecipeCommand recipeCommand = new RecipeCommand();
+        recipeCommand.setId(1L);
+
+        when(recipeService.findCommandById(1L)).thenReturn(recipeCommand);
+        when(unitOfMeasureService.listAllUoms()).thenReturn(new HashSet<>());
+
+        mockMvc.perform(MockMvcRequestBuilders.get("/recipe/1/ingredient/add"))
+                .andExpect(status().isOk())
+                .andExpect(view().name("recipe/ingredient/ingredientForm"))
+                .andExpect(model().attributeExists("ingredient"))
+                .andExpect(model().attributeExists("unitOfMeasure"));
+
+        verify(recipeService, times(1)).findCommandById(anyLong());
+
+    }
+
 
     @Test
     public void testUpdateIngredient() throws Exception {

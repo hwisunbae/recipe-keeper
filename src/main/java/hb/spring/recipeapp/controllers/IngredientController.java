@@ -2,6 +2,8 @@ package hb.spring.recipeapp.controllers;
 
 //import hb.spring.recipeapp.service.IngredientService;
 import hb.spring.recipeapp.commands.IngredientCommand;
+import hb.spring.recipeapp.commands.RecipeCommand;
+import hb.spring.recipeapp.commands.UnitOfMeasureCommand;
 import hb.spring.recipeapp.service.IngredientService;
 import hb.spring.recipeapp.service.RecipeService;
 import hb.spring.recipeapp.service.UnitOfMeasureService;
@@ -54,5 +56,21 @@ public class IngredientController {
         IngredientCommand savedCommand = ingredientService.saveIngredientCommand(ingredientCommand);
 
         return "redirect:/recipe/" + savedCommand.getRecipeId() + "/ingredient/" + savedCommand.getId() + "/show";
+    }
+
+    @GetMapping
+    @RequestMapping("recipe/{recipeId}/ingredient/add")
+    public String addRecipeIngredient (@PathVariable String recipeId,
+                                       Model model){
+        RecipeCommand recipeCommand = recipeService.findCommandById(Long.valueOf(recipeId));
+        //TODO raise exception if null
+
+        IngredientCommand ingredientCommand = new IngredientCommand();
+        ingredientCommand.setRecipeId(Long.valueOf(recipeId));
+        model.addAttribute("ingredient", ingredientCommand);
+
+        ingredientCommand.setUnitOfMeasureCommand(new UnitOfMeasureCommand());
+        model.addAttribute("unitOfMeasure", unitOfMeasureService.listAllUoms());
+        return "recipe/ingredient/ingredientForm";
     }
 }
