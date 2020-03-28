@@ -23,7 +23,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
 
 class IndexControllerTest {
-    IndexController controller;
+    public IndexController controller;
 
     @Mock
     RecipeService recipeService;
@@ -46,7 +46,7 @@ class IndexControllerTest {
     }
 
     @Test
-    void getIndexPage() {
+    public void getIndexPage() {
         Set<Recipe> recipes = new HashSet<>();
 
         recipes.add(Recipe.builder().id(1l).build());
@@ -62,4 +62,5 @@ class IndexControllerTest {
         Set<Recipe> setInController = argumentCaptor.getValue();
         assertEquals(setInController.size(), 2);
     }
+
 }
