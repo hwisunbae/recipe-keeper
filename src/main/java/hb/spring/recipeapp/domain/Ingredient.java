@@ -10,14 +10,21 @@ import java.math.BigDecimal;
 @EqualsAndHashCode(exclude = {"recipe"})
 @Entity
 public class Ingredient {
-    @Builder
+    public Ingredient(){}
+
     public Ingredient(String description, BigDecimal amount, UnitOfMeasure uom) {
         this.description = description;
         this.amount = amount;
         this.uom = uom;
     }
 
-    public Ingredient(){}
+    public Ingredient(String description, BigDecimal amount, UnitOfMeasure uom, Recipe recipe) {
+        this.description = description;
+        this.amount = amount;
+        this.uom = uom;
+        this.recipe = recipe;
+    }
+
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -30,6 +37,4 @@ public class Ingredient {
 
     @OneToOne(fetch = FetchType.EAGER)
     private UnitOfMeasure uom;
-
-
 }

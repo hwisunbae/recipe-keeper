@@ -3,6 +3,7 @@ package hb.spring.recipeapp.converters;
 import com.fasterxml.jackson.databind.JavaType;
 import com.fasterxml.jackson.databind.type.TypeFactory;
 import com.fasterxml.jackson.databind.util.Converter;
+import com.sun.istack.Nullable;
 import hb.spring.recipeapp.commands.NotesCommand;
 import hb.spring.recipeapp.domain.Notes;
 import lombok.Synchronized;
@@ -14,11 +15,12 @@ import javax.validation.constraints.Null;
 public class NotesToCommand implements Converter<Notes, NotesCommand> {
 
     @Synchronized
-    @Null
+    @Nullable
     @Override
     public NotesCommand convert(Notes notes) {
         if(notes == null)
             return null;
+
         final NotesCommand notesCommand = new NotesCommand();
         notesCommand.setId(notes.getId());
         notesCommand.setRecipeNotes(notes.getRecipeNotes());

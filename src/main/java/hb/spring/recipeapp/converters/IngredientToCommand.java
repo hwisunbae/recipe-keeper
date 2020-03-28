@@ -3,13 +3,13 @@ package hb.spring.recipeapp.converters;
 import com.fasterxml.jackson.databind.JavaType;
 import com.fasterxml.jackson.databind.type.TypeFactory;
 import com.fasterxml.jackson.databind.util.Converter;
+import com.sun.istack.Nullable;
 import hb.spring.recipeapp.commands.IngredientCommand;
 import hb.spring.recipeapp.commands.UnitOfMeasureCommand;
 import hb.spring.recipeapp.domain.Ingredient;
 import lombok.Synchronized;
 import org.springframework.stereotype.Component;
 
-import javax.validation.constraints.Null;
 
 @Component
 public class IngredientToCommand implements Converter<Ingredient, IngredientCommand> {
@@ -21,7 +21,7 @@ public class IngredientToCommand implements Converter<Ingredient, IngredientComm
     }
 
     @Synchronized
-    @Null
+    @Nullable
     @Override
     public IngredientCommand convert(Ingredient ingredient) {
         if (ingredient == null)

@@ -3,18 +3,17 @@ package hb.spring.recipeapp.converters;
 import com.fasterxml.jackson.databind.JavaType;
 import com.fasterxml.jackson.databind.type.TypeFactory;
 import com.fasterxml.jackson.databind.util.Converter;
+import com.sun.istack.Nullable;
 import hb.spring.recipeapp.commands.NotesCommand;
 import hb.spring.recipeapp.domain.Notes;
 import lombok.Synchronized;
 import org.springframework.stereotype.Component;
 
-import javax.validation.constraints.Null;
-
 @Component
 public class CommandToNotes implements Converter<NotesCommand, Notes> {
 
     @Synchronized
-    @Null
+    @Nullable
     @Override
     public Notes convert(NotesCommand notesCommand) {
         if(notesCommand == null)

@@ -1,12 +1,14 @@
 package hb.spring.recipeapp.service;
 
 import hb.spring.recipeapp.commands.IngredientCommand;
+import hb.spring.recipeapp.converters.CommandToIngredient;
+import hb.spring.recipeapp.converters.CommandToRecipe;
 import hb.spring.recipeapp.converters.IngredientToCommand;
 import hb.spring.recipeapp.converters.UnitOfMeasureToCommand;
 import hb.spring.recipeapp.domain.Ingredient;
 import hb.spring.recipeapp.domain.Recipe;
 import hb.spring.recipeapp.repositories.RecipeRepository;
-import org.junit.Before;
+import hb.spring.recipeapp.repositories.UnitOfMeasureRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
@@ -20,21 +22,26 @@ import static org.mockito.Mockito.*;
 
 class IngredientServiceImplTest {
 
-    IngredientToCommand ingredientToCommand;
+    IngredientToCommand ingredientToCommand = new IngredientToCommand(new UnitOfMeasureToCommand());
     IngredientService ingredientService;
+    CommandToIngredient commandToIngredient;
+
 
     @Mock
     RecipeRepository recipeRepository;
 
+    @Mock
+    UnitOfMeasureRepository unitOfMeasureRepository;
+
     // needed to init converters
     public IngredientServiceImplTest() {
-        this.ingredientToCommand = new IngredientToCommand(new UnitOfMeasureToCommand());
+//        this.ingredientToCommand = new IngredientToCommand(new UnitOfMeasureToCommand());
     }
 
     @BeforeEach
     public void setUp(){
         MockitoAnnotations.initMocks(this);
-        ingredientService = new IngredientServiceImpl(ingredientToCommand, recipeRepository);
+        ingredientService = new IngredientServiceImpl(ingredientToCommand, commandToIngredient, recipeRepository, unitOfMeasureRepository);
     }
 
     @Test
@@ -68,4 +75,27 @@ class IngredientServiceImplTest {
 
 
     }
+
+//    @Test
+//    public void saveIngredientCommand() {
+//        IngredientCommand ingredientCommand = new IngredientCommand();
+//        ingredientCommand.setId(3L);
+//        ingredientCommand.setRecipeId(2L);
+//
+//        Optional<Recipe> recipeOptional = Optional.of(new Recipe());
+//
+//        Recipe savedRecipe = new Recipe();
+//        savedRecipe.addIngredient(new Ingredient());
+//        savedRecipe.getIngredients().iterator().next().setId(3L);
+//
+//        when(recipeRepository.findById(anyLong())).thenReturn(recipeOptional);
+//        when(recipeRepository.save(any())).thenReturn(savedRecipe);
+//
+//        IngredientCommand savedCommand = ingredientService.saveIngredientCommand(ingredientCommand);
+//
+//        assertEquals(Long.valueOf(3L), savedCommand.getId());
+//        verify(recipeRepository,times(1)).findById(anyLong());
+//        verify(recipeRepository, times(1)).save(any(Recipe.class));
+//
+//    }
 }

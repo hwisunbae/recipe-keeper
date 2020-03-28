@@ -31,6 +31,7 @@ public class RecipeToCommand implements Converter<Recipe, RecipeCommand> {
     public RecipeCommand convert(Recipe recipe) {
         if(recipe==null)
             return null;
+
         final RecipeCommand command = new RecipeCommand();
         command.setId(recipe.getId());
         command.setDescription(recipe.getDescription());
