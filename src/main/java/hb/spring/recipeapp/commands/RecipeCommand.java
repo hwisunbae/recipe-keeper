@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import javax.persistence.Lob;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -13,6 +14,8 @@ import java.util.Set;
 @NoArgsConstructor
 public class RecipeCommand {
     private Long id;
+    @Lob
+    private Byte [] image;
     private String description;
     private Integer prepTime;
     private Integer cookTime;
