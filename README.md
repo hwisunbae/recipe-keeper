@@ -5,6 +5,14 @@
 # Recipe Application
 The purpose of this repo is to have a great start of building an application upon Spring Framework.  
 
+# 💡 Topic
+
+A web application that does **CRUD operation for recipe**
+
+# 📝 Summary
+
+Recipe Keeper is the quick and easy way to organize and share your favourite recipes across your mobile, tablet and desktop. The app helps users to save their own recipes and modify them for their needs.
+
 # Data Model
 ![Recipe Data Model](jhipster-jdl.png)
 *Created by jdl-studio*
